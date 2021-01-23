@@ -3,7 +3,7 @@
 This extension module for the [Magic Mirror](https://github.com/MichMich/MagicMirror) allows you to show information from any JSON on your mirror using an HTTP Request to an REST API. The module supports multiple instances to e.g. display values from different sources.
 
 ## Screenshot
-![json_values.png](https://raw.githubusercontent.com/c-klinger/MMM-JsonValue/doc/json_values.png)
+![json_values.png](https://github.com/c-klinger/MMM-JsonValue/raw/main/doc/json_values.png)
 
 ## Installation
 
