@@ -1,0 +1,25 @@
+{
+  "name": "Magic-Mirror-Module-JsonValue",
+  "version": "1.0.0",
+  "description": "This module for the Magic Mirror allows you to show information from an JSON REST API on your mirror.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c-klinger/MMM-JsonValue"
+  },
+  "keywords": [
+    "magic mirror",
+    "smart mirror",
+    "module",
+    "remote control",
+    "control",
+    "json",
+    "rest"
+  ],
+  "author": "Chris Klinger",
+  "contributors": "git+https://github.com/c-klinger/MMM-JsonValue/graphs/contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "git+https://github.com/c-klinger/MMM-JsonValue/issues"
+  },
+  "homepage": "git+https://github.com/c-klinger/MMM-JsonValue#readme"
+}
