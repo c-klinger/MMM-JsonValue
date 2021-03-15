@@ -9,6 +9,7 @@
 
 const NodeHelper = require('node_helper');
 var request = require('request');
+var jp = require('jsonpath');
 
 module.exports = NodeHelper.create({
 
@@ -21,10 +22,14 @@ module.exports = NodeHelper.create({
 		var self = this;
 		var requester = self.subscribers[instanceID]
 		self.doCall(requester.config.apiBase, requester.config.method, function(response) {
-			self.sendSocketNotification("DATA", {instanceID: instanceID, body: response});
+			self.sendSocketNotification("DATA", {instanceID: instanceID, data: self.parseData(response, requester.config.jsonPath)});
 		})
-		
+
 		setTimeout(function() { self.getData(instanceID); }, requester.config.refreshInterval);
+	},
+
+	parseData: function(data, jsonPath) {
+		return jp.query(JSON.parse(data), "$." + jsonPath);
 	},
 
 	doCall: function(urlToCall, httpMethod, callback) {
@@ -32,7 +37,7 @@ module.exports = NodeHelper.create({
 			url: urlToCall,
 			method: httpMethod,
 		}, function (error, response, body) {
-			
+
 			if (!error && response.statusCode == 200) {
 				callback(body);
 			}

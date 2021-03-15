@@ -21,17 +21,17 @@ npm install
 	module: "MMM-JsonValue",
 	position: "top_left",
 	config: {
-		apiBase: 'https://api.quotable.io/random',	
+		apiBase: 'https://api.quotable.io/random',
 		method: "GET",
 
 		title: "MM API TEST", // Widget Title, set to null if not needed
 		icon: "fa-quote-right", // Font Awesome icon, displayed before any text, set to null if not needed
 		prefix: "Quote: \"", // Text displayed before the value, can be a blank String ""
 		suffix: "\" (from https://api.quotable.io/random)", // Text displayed after the value, can be a blank String ""
-		jsonPath: "content", // value in the json to display
+		jsonPath: "content", // value in the json to display, the module use https://github.com/dchester/jsonpath for parsing. You don't need leading $. in your path.
 
 		refreshInterval: 1000 * 60, // refresh every minute
-		//skipPadding: true, // yo can un-comment this line if you want to display a related value below; using a second instance. 
+		//skipPadding: true, // yo can un-comment this line if you want to display a related value below; using a second instance.
 	}
  },
 ```
