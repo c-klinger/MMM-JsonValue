@@ -7,14 +7,14 @@
 
 Module.register("MMM-JsonValue", {
 	defaults: {
-		apiBase: 'https://api.quotable.io/random',	
+		apiBase: 'https://api.quotable.io/random',
 		method: "GET",
 
 		title: "MM API TEST",
 		icon: "fa-quote-right",
 		prefix: "Quote: \"",
 		suffix: "\" (from https://api.quotable.io/random)",
-		jsonPath: "content",
+		jsonPath: "$.content",
 
 		refreshInterval: 1000 * 60, // refresh every minute
 	},
@@ -28,19 +28,6 @@ Module.register("MMM-JsonValue", {
 		this.value = "";
 		this.config.instanceID = this.identifier
 		this.sendSocketNotification('CONFIG', this.config);
-	},
-
-	processValue: function (data) {
-
-		var obj = data;
-		Log.info(obj);
-		var p = this.config.jsonPath.split('.');
-  		for (var i = 0, len = p.length; i < len - 1; i++) {
-	    	obj = obj[p[i]];
-  		}
-
-	  	this.value =  obj[p[len - 1]];
-		this.updateDom();
 	},
 
 	getHeader: function () {
@@ -76,8 +63,9 @@ Module.register("MMM-JsonValue", {
 			else if (notification === "DATA") {
 				this.loaded = true;
 				Log.info(payload);
-				this.processValue(JSON.parse(payload.body));
+				this.value = payload.data;
+				this.updateDom();
     		}
     	}
-	} 	
+	}
 })
