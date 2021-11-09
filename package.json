@@ -1,6 +1,6 @@
 {
   "name": "Magic-Mirror-Module-JsonValue",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "This module for the Magic Mirror allows you to show information from an JSON REST API on your mirror.",
   "repository": {
     "type": "git",
