@@ -8,8 +8,8 @@
  */
 
 const NodeHelper = require('node_helper');
-var request = require('request');
-var jp = require('jsonpath');
+const fetch = require("node-fetch");
+const jp = require('jsonpath');
 
 module.exports = NodeHelper.create({
 
@@ -29,19 +29,15 @@ module.exports = NodeHelper.create({
 	},
 
 	parseData: function(data, jsonPath) {
-		return jp.query(JSON.parse(data), "$." + jsonPath);
+		return jp.query(data, "$." + jsonPath);
 	},
 
 	doCall: function(urlToCall, httpMethod, callback) {
-		request({
-			url: urlToCall,
-			method: httpMethod,
-		}, function (error, response, body) {
-
-			if (!error && response.statusCode == 200) {
-				callback(body);
-			}
-		});
+		var fetchOptions = { method: httpMethod };
+		fetch(urlToCall)
+		    .then(res => res.json())
+		    .then(json => callback(json))
+		    .catch(error => console.log(error));
 	},
 
 	socketNotificationReceived: function(notification, payload) {
