@@ -34,7 +34,7 @@ module.exports = NodeHelper.create({
 
 	doCall: function(urlToCall, httpMethod, httpHeaders, callback) {
 		var fetchOptions = { method: httpMethod, headers: httpHeaders };
-		fetch(urlToCall)
+		fetch(urlToCall, fetchOptions)
 		    .then(res => res.json())
 		    .then(json => callback(json))
 		    .catch(error => console.log(error));
