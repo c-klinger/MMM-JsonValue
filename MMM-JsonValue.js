@@ -15,6 +15,7 @@ Module.register("MMM-JsonValue", {
 		prefix: "Quote: \"",
 		suffix: "\" (from https://api.quotable.io/random)",
 		jsonPath: "content",
+		headers: {},
 
 		refreshInterval: 1000 * 60, // refresh every minute
 	},
