@@ -21,7 +21,7 @@ module.exports = NodeHelper.create({
 		//console.log("getData("+  instanceID + ")");
 		var self = this;
 		var requester = self.subscribers[instanceID]
-		self.doCall(requester.config.apiBase, requester.config.method, function(response) {
+		self.doCall(requester.config.apiBase, requester.config.method, requester.config.headers,  function(response) {
 			self.sendSocketNotification("DATA", {instanceID: instanceID, data: self.parseData(response, requester.config.jsonPath)});
 		})
 
@@ -32,9 +32,9 @@ module.exports = NodeHelper.create({
 		return jp.query(data, "$." + jsonPath);
 	},
 
-	doCall: function(urlToCall, httpMethod, callback) {
-		var fetchOptions = { method: httpMethod };
-		fetch(urlToCall)
+	doCall: function(urlToCall, httpMethod, httpHeaders, callback) {
+		var fetchOptions = { method: httpMethod, headers: httpHeaders };
+		fetch(urlToCall, fetchOptions)
 		    .then(res => res.json())
 		    .then(json => callback(json))
 		    .catch(error => console.log(error));
