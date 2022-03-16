@@ -36,6 +36,22 @@ npm install
  },
 ```
 
+## Additional Configuration
+
+### Custom HTTP Headers
+You can add custom HTTP Headers to the configuration of each widget, this might be useful for cache control or authentification:
+```js
+{
+	module: "MMM-JsonValue",
+	position: "top_left",
+	config: {
+		//...
+		headers: {'Authorization': 'Bearer SecretToken'}
+		//...
+	}
+ },
+```
+
 ## Update
 
 Update this module by navigating into its folder on the command line and using `git pull`:
