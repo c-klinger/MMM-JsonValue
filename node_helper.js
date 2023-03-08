@@ -28,9 +28,13 @@ module.exports = NodeHelper.create({
 		setTimeout(function() { self.getData(instanceID); }, requester.config.refreshInterval);
 	},
 
-	parseData: function(data, jsonPath) {
-		return jp.query(data, "$." + jsonPath);
-	},
+parseData: function(data, jsonPath) {
+  if (jsonPath.startsWith("[?(")) {
+    return jp.query(data, "$" + jsonPath);
+  } else {
+    return jp.query(data, "$." + jsonPath);
+  }
+},
 
 	doCall: function(urlToCall, httpMethod, httpHeaders, callback) {
 		var fetchOptions = { method: httpMethod, headers: httpHeaders };
