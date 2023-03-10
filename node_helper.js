@@ -29,12 +29,11 @@ module.exports = NodeHelper.create({
 	},
 
 parseData: function(data, jsonPath) {
-  if (jsonPath.startsWith("[?(")) {
-    return jp.query(data, "$" + jsonPath);
-  } else {
-    return jp.query(data, "$." + jsonPath);
+  if (!jsonPath.startsWith("$")) {
+    jsonPath = "$." + jsonPath;
   }
-},
+  return jp.query(data, jsonPath);
+}
 
 	doCall: function(urlToCall, httpMethod, httpHeaders, callback) {
 		var fetchOptions = { method: httpMethod, headers: httpHeaders };
