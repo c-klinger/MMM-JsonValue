@@ -33,7 +33,7 @@ parseData: function(data, jsonPath) {
     jsonPath = "$." + jsonPath;
   }
   return jp.query(data, jsonPath);
-}
+},
 
 	doCall: function(urlToCall, httpMethod, httpHeaders, callback) {
 		var fetchOptions = { method: httpMethod, headers: httpHeaders };
